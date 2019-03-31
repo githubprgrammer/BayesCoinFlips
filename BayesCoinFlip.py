@@ -1,4 +1,7 @@
 import matplotlib.pyplot as plt
+import numpy as np
+import csv
+import pandas as pd
 
 '''
 We have a large jar containing many coins. Half of the coins are fair and the other half are biased towards tail. 
@@ -7,12 +10,8 @@ We have data from 12 different experiments. In each experiment, a coin is random
 During this process we can update our belief about the coin being biased or not. We will use Bayesian statistics to determine for each coin 
 the probability of it being biased.
 '''
-
-
-
-
-#this is our dataset of coinflips. Each List of coinflips is an experiment with a specific coin taken from the jar.
-coinFlips = [['H', 'H', 'T', 'T', 'H', 'T', 'T', 'H', 'H', 'T', 'T', 'T', 'T', 'T', 'H', 'T', 'T', 'T', 'T', 'H'], ['T', 'T', 'H', 'T', 'T', 'T', 'H', 'T', 'T', 'T', 'H', 'T', 'T', 'T', 'H', 'T', 'T', 'T', 'H', 'H'], ['T', 'H', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'H'], ['T', 'H', 'H', 'T', 'H', 'H', 'T', 'H', 'T', 'T', 'T', 'T', 'T', 'H', 'T', 'H', 'H', 'H', 'T', 'T'], ['T', 'H', 'H', 'H', 'T', 'H', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'H', 'T', 'T', 'T', 'T', 'T', 'T'], ['H', 'H', 'T', 'H', 'T', 'H', 'T', 'T', 'T', 'T', 'H', 'H', 'H', 'H', 'T', 'T', 'T', 'T', 'T', 'H'], ['H', 'T', 'H', 'T', 'H', 'H', 'H', 'T', 'H', 'H', 'H', 'H', 'H', 'T', 'T', 'H', 'H', 'T', 'T', 'T'], ['T', 'T', 'T', 'T', 'T', 'H', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'H', 'T', 'H', 'T', 'T', 'T'], ['T', 'T', 'T', 'H', 'H', 'T', 'T', 'H', 'T', 'T', 'H', 'T', 'H', 'T', 'T', 'T', 'T', 'H', 'T', 'T'], ['H', 'H', 'H', 'H', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'H', 'T', 'T', 'T', 'H', 'H', 'H'], ['T', 'T', 'T', 'H', 'T', 'T', 'T', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'T', 'T', 'T', 'T'], ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']]
+data = pd.read_csv('coin-flips.csv')
+coinFlips = np.array(data)
 
 
 def posterior(prior, coin):
